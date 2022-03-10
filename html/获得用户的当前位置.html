@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获得用户的当前位置</title>
+</head>
+<body>
+    <script>
+        navigator.geolocation.getCurrentPosition(pos => {
+            // let latitude = pos.coords.latitude;
+            // let longitude = pos.coords.longitude;
+            const { latitude, longitude } = pos.coords;
+            console.log('纬度：' + latitude);
+            console.log('经度：' + longitude);
+        });
+    </script>
+</body>
+</html>
