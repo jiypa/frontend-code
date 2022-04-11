@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水平居中</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+        }
+        .d1{
+            background-color: red;
+            margin: auto;
+            text-align: center;
+        }
+        .d2{
+            width: 100px;
+            height: 100px;
+            /* 居中块级元素的时候必须将块级元素转化为行内块级元素text-align: center才会起作用 */
+            display: inline-block;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <div class="d2"></div>
+    </div>
+</body>
+</html>
