@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+        }
+        .d1{
+            background-color: red;
+            position: absolute;
+            padding: 10px;
+            margin: 20px;
+            border: dashed;
+        }
+        .d2{
+            background-color: yellow;
+            /* 绝对定位的时候只包括content和padding，不包括border和margin */
+            position: absolute;
+            top: 220px;
+        }
+        .d3{
+            background-color: orange;
+            position: absolute;
+            top: 420px;
+        }
+        .d4{
+            background-color: skyblue;
+            
+            position: relative;
+            left: 300px;
+            top: 20px;
+            padding: 10px;
+            border: dashed;
+        }
+        .d5{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 相对定位的时候只包括content，不包括padding、border和margin */
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <div class="d2"></div>
+        <div class="d3"></div>
+    </div>
+    <div class="d4">
+        <div class="d5"></div>
+    </div>
+</body>
+</html>
