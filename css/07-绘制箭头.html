@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绘制箭头</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .d1{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+            border-right: 3px solid rgba(0, 0, 0, 0.5);
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="d1" onclick="rotate()"></div>
+
+    <script>
+        // 注意查看获取元素节点的时候返回的是不是数组
+        let d1 = document.getElementsByClassName('d1')[0];
+        const rotate = function () {
+            d1.style.cssText = 'transform: rotate(225deg); transition: 1s;';
+        };
+    </script>
+</body>
+</html>
