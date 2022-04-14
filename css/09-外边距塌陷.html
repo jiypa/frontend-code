@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外边距塌陷</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+        }
+        .d1{
+            background-color: red;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .d2{
+            background-color: yellow;
+            margin-top: 20px;
+            /* 相邻兄弟元素所产生的外边距塌陷 */
+            display: inline-block;
+        }
+        .d3{
+            width: auto;
+            height: 200px;
+            /* 空元素所产生的外边距塌陷 */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .d4{
+            background-color: orange;
+        }
+        .d5{
+            width: 200px;
+            height: 100px;
+            background-color: skyblue;
+            /* 父元素和第一个子元素所产生的外边距塌陷 */
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <div class="d5"></div>
+    </div>
+    <div class="d2"></div>
+    <div class="d3"></div>
+    <div class="d4"></div>
+</body>
+</html>
