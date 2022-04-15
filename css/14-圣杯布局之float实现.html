@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣杯布局之float实现</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: larger;
+        }
+        html, body{
+            width: 100%;
+        }
+        header, footer{
+            width: 100%;
+            height: 70px;
+            background-color: #95D1CC;
+        }
+        .main{
+            padding: 0 300px;
+        }
+        /* .mian为浮动元素的父元素 */
+        /* 在父元素未指定高度的情况下，子元素使用了浮动会造成父元素的高度塌陷，此时需清除浮动 */
+        .main::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .center{
+            width: 100%;
+            background-color: #FAFFAF;
+        }
+        .left{
+            width: 300px;
+            background-color: #B6FFCE;
+            margin-left: -100%;
+            position: relative;
+            left: -300px;
+        }
+        .right{
+            width: 300px;
+            background-color: #B6FFCE;
+            margin-left: -300px;
+            position: relative;
+            left: 300px;
+        }
+        .center, .left, .right{
+            height: 600px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <header>头部</header>
+    <!-- 父级div元素的作用是为了清除浮动 -->
+    <div class="main">
+        <!-- 先加载主区域，因此把主区域元素放在最前面 -->
+        <div class="center">主区域</div>
+        <div class="left">左区域</div>
+        <div class="right">右区域</div>
+    </div>
+    <footer>尾部</footer>
+</body>
+</html>

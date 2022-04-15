@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .d1{
+            width: 600px;
+            height: 400px;
+            /* 设置左右外边距时只有左外边距有效，因为块级元素本身就会占据一整行，右边本身就留有空白，所以设置了右外边距也看不出效果 */
+            /* margin: 0 200px; */
+            /* 设置左右内边距时左右内边距都有效 */
+            padding: 0 200px;
+        }
+        .d2{
+            width: 200px;
+            background-color: red;
+        }
+        .d3{
+            width: 200px;
+            background-color: yellow;
+            margin-left: -400px;
+        }
+        .d4{
+            width: 200px;
+            background-color: orange;
+        }
+        .d2, .d3, .d4{
+            height: 100%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <div class="d2">1</div>
+        <div class="d3">2</div>
+        <div class="d4">3</div>
+    </div>
+</body>
+</html>
