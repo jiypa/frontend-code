@@ -26,3 +26,5 @@ console.log(number.toLocaleString('en')); // 12,000,000.11
 console.log(Intl.NumberFormat().format(number)); // 12,000,000.11
 // 32
 console.log(Math.random()); // 随机生成[0, 1)之间的数
+// 45
+console.log(["1", "2", "3"].map(parseInt));
