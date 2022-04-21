@@ -9,14 +9,14 @@
 <body>
     <div></div>
     <script>
-        let xmlhttp = null;
+        let xhr = null;
 
         if (window.XMLHttpRequest) {
             // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-            xmlhttp = new XMLHttpRequest();
+            xhr = new XMLHttpRequest();
         } else {
             // IE6, IE5 浏览器执行代码
-            xmlhttp = new ActiveXObject();
+            xhr = new ActiveXObject();
         }
         const url = 'http://localhost';
 
@@ -26,9 +26,9 @@
             url：文件在服务器上的位置
             async：true（异步）或 false（同步），默认为true，即异步
         */
-        xmlhttp.open('GET', url);
+        xhr.open('GET', url);
         // send(string)：将请求发送到服务器，string仅用于 POST 请求
-        xmlhttp.send();
+        xhr.send();
 
         // 还有一个setRequestHeader(header,value)方法，这里没用，它的作用是向请求添加 HTTP 头
         
@@ -42,11 +42,26 @@
             每当readyState属性改变时，就会调用onreadystatechange函数，所以我们可以通过该函数来监听readyState状态以获取后端发送过来的响应
             注意：onreadystatechange事件共会被触发4次, 分别是： 0-1、1-2、2-3、3-4，对应着 readyState 的每个变化
         */
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200)
-            {
-                document.querySelector("div").innerText=xmlhttp.responseText;
-            }
+        // xhr.onreadystatechange = function() {
+        //     if (xhr.readyState==4 && xhr.status==200)
+        //     {
+        //         document.querySelector("div").innerText=xhr.responseText;
+        //     }
+        // }
+
+        /*
+            ajax请求支持的8个事件处理程序：
+            1.onabort：当请求中止时触发
+            2.onload：当请求成功时触发
+            3.onloadend：在请求成功或者失败时触发；load、abort、error、timeout事件发生之后
+            4.onloadstart：当请求开始时触发
+            5.onreadystatechange：当readyStateChange属性改变时触发
+            6.ontimeout：当timeout属性指定的时间已经过去但响应依旧没有完成时触发
+            7.onerror：当请求因错误失败时触发。注意404等状态码不是error，因为此时响应仍然是成功完成的
+            8.onprogress：当响应主体正在下载重复触发（约每隔50ms一次）
+        */
+        xhr.onload = function() {
+            document.querySelector("div").innerText=xhr.responseText;
         }
     </script>
 </body>
