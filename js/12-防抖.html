@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+<body>
+    <button>发送请求</button>
+    <script>
+        // document.querySelector()方法返回文档中与指定选择器或选择器组匹配的第一个元素对象
+        const btn = document.querySelector('button');
+        // 防抖：用户触发相同事件过于频繁，实际上只要触发最后一次事件所产生的结果即可
+        function debounce(fn, delay) {
+            let tid = null;
+            return function() {
+                // 针对第二次及以后触发该事件进行的处理
+                if (tid) {
+                    clearTimeout(tid);
+                }
+                tid = setTimeout(() => {
+                    console.log(this); // 这里的this指向的是btn对象
+                    fn.call(this);
+                }, delay);
+            }
+        }
+        btn.onclick = debounce(function() {
+            console.log(this); // 这里的this指向的是btn对象
+            console.log('请求已发送！');
+        }, 3000);
+    </script>
+</body>
+</html>

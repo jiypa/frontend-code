@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+    <style>
+        body{
+           height: 3000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 节流：控制请求次数
+        function throttle(fn, delay) {
+            let flag = true;
+
+            return function() {
+                if (flag) {
+                    setTimeout(() => {
+                        fn.call(this);
+                        flag = true;
+                    }, delay);
+                }
+                flag = false;
+            }
+        }
+        // window的onscroll事件只和闭包的内部函数有关，闭包的外部函数只提供一个环境
+        window.onscroll = throttle(function() {
+            console.log('滚动事件被触发！');
+        }, 3000);
+    </script>
+</body>
+</html>
