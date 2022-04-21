@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+<body>
+    <div></div>
+    <script>
+        let xmlhttp = null;
+
+        if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp = new ActiveXObject();
+        }
+        const url = 'http://localhost';
+
+        /* 
+            open(method,url,async)：规定请求的类型、URL 以及是否异步处理请求
+            method：请求的类型；GET 或 POST
+            url：文件在服务器上的位置
+            async：true（异步）或 false（同步），默认为true，即异步
+        */
+        xmlhttp.open('GET', url);
+        // send(string)：将请求发送到服务器，string仅用于 POST 请求
+        xmlhttp.send();
+
+        // 还有一个setRequestHeader(header,value)方法，这里没用，它的作用是向请求添加 HTTP 头
+        
+        /* 
+            readyState描述的是XMLHttpRequest的状态，共有5种可取的值，分别为：
+            0：请求未初始化
+            1：服务器连接已建立（已调用open方法）
+            2：请求已接收（已调用send方法）
+            3：请求处理中
+            4：请求已完成，响应已就绪
+            每当readyState属性改变时，就会调用onreadystatechange函数，所以我们可以通过该函数来监听readyState状态以获取后端发送过来的响应
+            注意：onreadystatechange事件共会被触发4次, 分别是： 0-1、1-2、2-3、3-4，对应着 readyState 的每个变化
+        */
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.querySelector("div").innerText=xmlhttp.responseText;
+            }
+        }
+    </script>
+</body>
+</html>
