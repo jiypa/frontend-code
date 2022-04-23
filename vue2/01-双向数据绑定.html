@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>双向数据绑定</title>
+</head>
+<body>
+    <input type="text">
+    <p></p>
+    <script>
+        const vm = {};
+        const p = document.querySelector('p');
+        Object.defineProperty(vm, 'data', {
+            // 数据劫持发生在get与set方法中
+            set(value) {
+                p.innerText = value;
+            }
+        });
+
+        const inp = document.querySelector('input');
+        inp.addEventListener('keyup', function(event) {
+            vm.data = event.target.value; // 触发上述set方法
+        });
+    </script>
+</body>
+</html>

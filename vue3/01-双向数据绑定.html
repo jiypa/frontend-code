@@ -8,13 +8,16 @@
     <title>双向数据绑定</title>
 </head>
 <body>
-    <div id="app">{{hello}}</div>
+    <div id="app">{{msg}}</div>
     <script>
         const app = Vue.createApp({
             data() {
                 return {
-                    hello: 'Hello World'
+                    msg: {value: 'Hello World'}
                 }
+            },
+            mounted () {
+                console.log(this.msg);
             },
         }).mount('#app');
     </script>
