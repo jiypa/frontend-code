@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>computed&watch</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="num1" type="text" /><br>
+        <input v-model="num2" type="text" /><br>
+        <p>两数相加得{{sum}}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    num1: '', 
+                    num2: ''
+                }
+            },
+            computed: {
+                sum() {
+                    return Number(this.num1) + Number(this.num2);
+                }
+            },
+            watch: {
+                sum(newValue, oldValue) {
+                    console.log(`sum原值是${oldValue}，现值是${newValue}`);
+                }
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>
