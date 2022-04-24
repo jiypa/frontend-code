@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld @logCount="logCount" :msg="msg" ref="hw" />
   </div>
 </template>
 
@@ -11,6 +11,23 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
+  inject: ['author'],
+  data() {
+    return {
+      view: 'Home',
+      msg: 'Hello Vue',
+    }
+  },
+  methods: {
+    logCount(data) {
+      console.log(data);
+    }
+  },
+  mounted () {
+    console.log(this.$refs.hw.view);
+
+    console.log(this.author);
+  },
   components: {
     HelloWorld
   }
