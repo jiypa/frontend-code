@@ -19,5 +19,4 @@
     return res;
 };
 
-let res = twoSum([3, 3], 6);
-console.log(res);
+console.log(twoSum([3, 3], 6));
