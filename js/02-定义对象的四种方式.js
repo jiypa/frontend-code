@@ -17,7 +17,7 @@ const timer = {
     }
 }
 
-// 方式二：使用普通构造函数，创建对象时需要使用new关键字
+// 方式二：使用普通构造函数，创建对象时需要使用new关键字，无需返回值
 // 这种方式实际上创建的是一个类，new相当于实例化，类经过实例化得到对象
 function Person(name, age, sex) {
     this.name = name;
@@ -30,7 +30,12 @@ function Person(name, age, sex) {
     };
 }
 
-// 方式三：使用Object()构造函数
+// 方式三：使用工厂函数，必须有返回值且返回值必须是一个对象
+function createTimer() {
+    return new Date();
+}
+
+// 方式四：使用Object()构造函数
 // 情形一
 const benz = new Object();
 benz.name = 'Benz';
@@ -52,7 +57,7 @@ const tesla = new Object({
     }
 });
 
-// 方式四：使用Object.create()方法，它可以基于现有对象创建新的对象实例
+// 方式五：使用Object.create()方法，它可以基于现有对象创建新的对象实例
 const ntimer = Object.create(timer);
 ntimer.tname = 'Another New Timer';
 
@@ -63,8 +68,10 @@ ntimer.tname = 'Another New Timer';
 // const jeo = new Person('Jeo', 22, '男');
 // console.log(jeo.getPerInfo());
 
-// console.log(benz.getBenzInfo());
+// const date = createTimer();
+// console.log(date);
 
+// console.log(benz.getBenzInfo());
 // console.log(tesla.getTeslaInfo());
 
 const {tname, getCurTime} = ntimer;
