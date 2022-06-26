@@ -37,25 +37,17 @@
             display: block;
             box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
         }
-        button{
+        #btn1{
             width: 400px;
             height: 50px;
-            /* border: none; */
             outline: none;
             color: rgb(24, 144, 255);
             border: 1px solid rgb(24, 144, 255);
             background-color: #fff;
-            /* color: #fff;
-            background-color: rgb(24, 144, 255); */
         }
-        button a{
+        #btn1 a{
             color: rgb(24, 144, 255);
         }
-        /* button:hover{
-            cursor: pointer;
-            color: #fff;
-            background-color: rgb(24, 144, 255);
-        } */
         #name{
             display: flex;
             justify-content: center;
@@ -78,25 +70,55 @@
             font-size: 16px;
             padding: 5px;
         }
+        #btn2{
+            width: 50px;
+            height: 30px;
+            margin: 10px;
+            color: rgb(24, 144, 255);
+            border: 1px solid rgb(24, 144, 255);
+            background-color: #fff;
+        }
+        #btn2:hover{
+            cursor: pointer;
+            color: #fff;
+            background-color: rgb(24, 144, 255);
+        }
+        #pop{
+            width: 400px;
+            height: 50px;
+            color: rgb(24, 144, 255);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #pop > span{
+            font-size: 40px;
+        }
     </style>
 </head>
 <body>
     <div id="app">
         <h2>狗狗认养大厅</h2><br>
         <img><br>
-        <button>
+        <button id="btn1">
             <p>随机获取一张狗狗图</p>
             <p>(数据来源于<a target="_blank" href="https://dog.ceo/">dog.ceo</a>)</p>
         </button><br>
         <div id="name">
             <label for="dog_name">为它取名：</label>
             <input type="text" id="dog_name">
+            <button id="btn2">提交</button>
         </div>
+        <p id="pop"></p>
     </div>
     <script>
         let img = document.querySelector('img');
-        let btn = document.querySelector('button');
-        let link = btn.querySelector('a');
+        let btn1 = document.querySelector('#btn1');
+        let btn2 = document.querySelector('#btn2');
+        let link = btn1.querySelector('a');
+        let dogName = document.querySelector('#dog_name');
+
         window.onload = function() {
             // 首次渲染自动加载图片
             fetch('https://dog.ceo/api/breeds/image/random')
@@ -105,18 +127,18 @@
                 if (data['status'] === 'success') img.setAttribute('src', data['message']);
             });
         }
-        btn.addEventListener('mouseover', () => {
-            btn.style.cursor = 'pointer';
-            btn.style.color = '#fff';
-            btn.style.backgroundColor = 'rgb(24, 144, 255)';
+        btn1.addEventListener('mouseover', () => {
+            btn1.style.cursor = 'pointer';
+            btn1.style.color = '#fff';
+            btn1.style.backgroundColor = 'rgb(24, 144, 255)';
             link.style.color = '#fff';
         });
-        btn.addEventListener('mouseout', () => {
-            btn.style.color = 'rgb(24, 144, 255)';
-            btn.style.backgroundColor = '#fff';
+        btn1.addEventListener('mouseout', () => {
+            btn1.style.color = 'rgb(24, 144, 255)';
+            btn1.style.backgroundColor = '#fff';
             link.style.color = 'rgb(24, 144, 255)';
         });
-        btn.addEventListener('click', () => {
+        btn1.addEventListener('click', () => {
             // fetch()函数同ajax一样都可以发送http请求，但是它返回的是一个Promise对象，需要经过两个then()方法才能获取到真实数据
             // fetch()函数默认发送的是get请求
             fetch('https://dog.ceo/api/breeds/image/random')
@@ -125,6 +147,29 @@
                 if (data['status'] === 'success') img.setAttribute('src', data['message']);
             });
         });
+        btn2.addEventListener('click', () => {
+            if (dogName.value) {
+                // 使用fetch()函数发送post请求
+                fetch('https://jsonplaceholder.typicode.com/users', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({name: dogName.value})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    let p = document.querySelector('#pop');
+                    p.innerHTML = `您认养的狗狗以后就叫<span>${data.name}</span>这个名字啦！`;
+                    let app = document.querySelector('#app');
+                    app.appendChild(p);
+                    console.log(data);
+                });
+            }
+
+            dogName.value = '';
+        });
+        dogName.addEventListener('keyup', (e) => {
+            if (e.code === 'Enter' && dogName.value) btn2.click();
+        })
     </script>
 </body>
 </html>
