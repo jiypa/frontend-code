@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        header{
+            background-color: #B1BCE6;
+            grid-area: h;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+        }
+        aside{
+            background-color: #FAF0D7;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+        }
+        .left{
+            grid-area: l;
+        }
+        .right{
+            grid-area: r;
+        }
+        main{
+            background-color: #CCF3EE;
+            grid-area: m;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+        }
+        footer{
+            background-color: #B8F1B0;
+            grid-area: f;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+        }
+        #app{
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-areas: 'h h h h h h h'
+                                 'l m m m m m r'
+                                 'f f f f f f f';
+            grid-template-rows: 70px calc(100% - 140px) 70px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>首部</header>
+        <aside class="left">左侧边栏</aside>
+        <main>内容主体</main>
+        <aside class="right">右侧边栏</aside>
+        <footer>尾部</footer>
+    </div>
+</body>
+</html>

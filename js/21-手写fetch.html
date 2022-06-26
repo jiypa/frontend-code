@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 100vw;
+            height: 100vh;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        h2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 600px;
+            height: 50px;
+            color: #fff;
+            background-color: rgb(24, 144, 255);
+            font-family: '宋体';
+        }
+        img{
+            width: 600px;
+            height: 400px;
+
+            display: block;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+        button{
+            width: 400px;
+            height: 50px;
+            /* border: none; */
+            outline: none;
+            color: rgb(24, 144, 255);
+            border: 1px solid rgb(24, 144, 255);
+            background-color: #fff;
+            /* color: #fff;
+            background-color: rgb(24, 144, 255); */
+        }
+        button a{
+            color: rgb(24, 144, 255);
+        }
+        /* button:hover{
+            cursor: pointer;
+            color: #fff;
+            background-color: rgb(24, 144, 255);
+        } */
+        #name{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 400px;
+            height: 50px;
+            color: rgb(24, 144, 255);
+            background-color: #dde1e7;
+            font-size: 16px;
+        }
+        #name > label{
+            font-weight: bold;
+        }
+        #name > input{
+            width: 150px;
+            outline: none;
+            color: rgb(24, 144, 255);
+            border: 1px solid rgb(24, 144, 255);
+            font-size: 16px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>狗狗认养大厅</h2><br>
+        <img><br>
+        <button>
+            <p>随机获取一张狗狗图</p>
+            <p>(数据来源于<a target="_blank" href="https://dog.ceo/">dog.ceo</a>)</p>
+        </button><br>
+        <div id="name">
+            <label for="dog_name">为它取名：</label>
+            <input type="text" id="dog_name">
+        </div>
+    </div>
+    <script>
+        let img = document.querySelector('img');
+        let btn = document.querySelector('button');
+        let link = btn.querySelector('a');
+        window.onload = function() {
+            // 首次渲染自动加载图片
+            fetch('https://dog.ceo/api/breeds/image/random')
+            .then(res => res.json()) // 这里是固定写法，否则获取不到真实数据
+            .then(data => {
+                if (data['status'] === 'success') img.setAttribute('src', data['message']);
+            });
+        }
+        btn.addEventListener('mouseover', () => {
+            btn.style.cursor = 'pointer';
+            btn.style.color = '#fff';
+            btn.style.backgroundColor = 'rgb(24, 144, 255)';
+            link.style.color = '#fff';
+        });
+        btn.addEventListener('mouseout', () => {
+            btn.style.color = 'rgb(24, 144, 255)';
+            btn.style.backgroundColor = '#fff';
+            link.style.color = 'rgb(24, 144, 255)';
+        });
+        btn.addEventListener('click', () => {
+            // fetch()函数同ajax一样都可以发送http请求，但是它返回的是一个Promise对象，需要经过两个then()方法才能获取到真实数据
+            // fetch()函数默认发送的是get请求
+            fetch('https://dog.ceo/api/breeds/image/random')
+            .then(res => res.json()) // 这里是固定写法，否则获取不到真实数据
+            .then(data => {
+                if (data['status'] === 'success') img.setAttribute('src', data['message']);
+            });
+        });
+    </script>
+</body>
+</html>
