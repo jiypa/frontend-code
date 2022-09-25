@@ -14,7 +14,7 @@
         const vm = {};
         const p = document.querySelector('p');
         Object.defineProperty(vm, 'data', {
-            // 数据劫持发生在get与set方法中
+            // 数据劫持发生在 get 与 set 方法中
             set(value) {
                 p.innerText = value;
             }
@@ -22,7 +22,7 @@
 
         const inp = document.querySelector('input');
         inp.addEventListener('keyup', function(event) {
-            vm.data = event.target.value; // 触发上述set方法
+            vm.data = event.target.value; // 触发上述 set 方法
         });
     </script>
 </body>
